@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "node ./dist/main.js",
+    "dev": "nodemon ./src/main.ts",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.5",
+    "express": "^4.21.2",
+    "hafas-client": "^6.3.0",
+    "typescript": "~5.7.2"
+  },
+  "devDependencies": {
+    "@types/hafas-client": "^6.3.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "zugexpert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@8.10.0+sha1.77d568bacf41eeefd6695a7087c1282433955b5c"
+}
