@@ -51,7 +51,6 @@ export const journeyHandler: RequestHandler<{}, {}, {}, JourneyQuery> = async (
     });
 
     const mapped = mapJourneys(results.journeys ?? []);
-
     res.send(mapped);
   } catch (e) {
     res.sendStatus(500);
