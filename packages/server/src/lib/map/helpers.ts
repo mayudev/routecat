@@ -10,8 +10,8 @@ export const mapOrigin = (trip: TypeWithTripData): StopData => ({
   id: trip.origin?.id,
   name: trip.origin?.name,
   location: [
-    (trip.origin as Stop).location?.latitude ?? 0,
-    (trip.origin as Stop).location?.longitude ?? 0,
+    (trip.origin as Stop)?.location?.latitude ?? 0,
+    (trip.origin as Stop)?.location?.longitude ?? 0,
   ],
   ...mapDeparture(trip),
 });
@@ -20,8 +20,8 @@ export const mapDestination = (trip: TypeWithTripData): StopData => ({
   id: trip.destination?.id,
   name: trip.destination?.name,
   location: [
-    (trip.origin as Stop).location?.latitude ?? 0,
-    (trip.origin as Stop).location?.longitude ?? 0,
+    (trip.destination as Stop)?.location?.latitude ?? 0,
+    (trip.destination as Stop)?.location?.longitude ?? 0,
   ],
   ...mapArrival(trip),
 });

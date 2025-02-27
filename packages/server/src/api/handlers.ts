@@ -1,8 +1,14 @@
 import { RequestHandler } from 'express';
 import client from '../lib/hafas';
-import { JourneyQuery, StopQuery, TripBody } from '../types/stops';
-import { Stop } from 'hafas-client';
-import { mapJourneys, mapLeg, mapTrip } from '../lib/map/trip';
+import {
+  JourneyQuery,
+  StationParams,
+  StopQuery,
+  TripBody,
+} from '../types/handlers';
+import { Leg, Station, Stop } from 'hafas-client';
+import { mapAlternative, mapJourneys, mapLeg, mapTrip } from '../lib/map/trip';
+import { mapStation } from '../lib/map/stop';
 
 export const stopHandler: RequestHandler<{}, {}, {}, StopQuery> = async (
   req,
@@ -17,14 +23,8 @@ export const stopHandler: RequestHandler<{}, {}, {}, StopQuery> = async (
 
   try {
     const result = await client.locations(searchQuery, { results: 5 });
-
-    const mappedResult = result.map(entry => ({
-      id: entry.id,
-      name: entry.name,
-      isMeta: (entry as Stop).isMeta ?? false,
-      location: (entry as Stop).location,
-    }));
-    res.send(mappedResult);
+    const mapped = result.map(station => mapStation(station as Station));
+    res.send(mapped);
   } catch (e) {
     res.sendStatus(500);
   }
@@ -77,4 +77,34 @@ export const tripHandler: RequestHandler<{}, {}, TripBody, {}> = async (
   }
 
   return;
+};
+
+export const departuresHandler: RequestHandler<StationParams> = async (
+  req,
+  res
+) => {
+  try {
+    const trips = await client.departures(req.params.stationId, {
+      duration: 30,
+    });
+    const mapped = trips.departures.map(departure => mapAlternative(departure));
+    res.send(mapped);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+};
+
+export const arrivalsHandler: RequestHandler<StationParams> = async (
+  req,
+  res
+) => {
+  try {
+    const trips = await client.arrivals(req.params.stationId, {
+      duration: 30,
+    });
+    const mapped = trips.arrivals.map(arrival => mapAlternative(arrival));
+    res.send(mapped);
+  } catch (e) {
+    res.sendStatus(500);
+  }
 };

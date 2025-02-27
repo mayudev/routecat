@@ -1,4 +1,5 @@
 import {
+  Alternative,
   Journey,
   Leg,
   Line,
@@ -6,7 +7,12 @@ import {
   TripWithRealtimeData,
 } from 'hafas-client';
 import { Stopover } from '../../types/stop';
-import { FullTrip, LegTrip, TransitLine } from '../../types/trip';
+import {
+  AlternativeTrip,
+  FullTrip,
+  TransitLine,
+  TripWithStopovers,
+} from '../../types/trip';
 import { mapArrival, mapDeparture, mapDestination, mapOrigin } from './helpers';
 
 export const mapJourneys = (journeys: readonly Journey[]) =>
@@ -14,7 +20,7 @@ export const mapJourneys = (journeys: readonly Journey[]) =>
     legs: journey.legs.map(mapLeg),
   }));
 
-export const mapLeg = (leg: Leg): LegTrip => ({
+export const mapLeg = (leg: Leg): TripWithStopovers => ({
   id: leg.tripId ?? '',
   destination: mapDestination(leg),
   origin: mapOrigin(leg),
@@ -23,6 +29,15 @@ export const mapLeg = (leg: Leg): LegTrip => ({
   direction: leg.direction,
   walking: leg.walking,
   distance: leg.distance,
+});
+
+export const mapAlternative = (alternative: Alternative): AlternativeTrip => ({
+  ...mapLeg(alternative),
+  planned: alternative.plannedWhen,
+  actual: alternative.when,
+  provenance: alternative.provenance,
+  plannedPlatform: alternative.plannedPlatform,
+  platform: alternative.platform,
 });
 
 export const mapTrip = (trip: TripWithRealtimeData): FullTrip => ({
@@ -38,7 +53,7 @@ export const mapTrip = (trip: TripWithRealtimeData): FullTrip => ({
 
 export const mapLine = (line?: Line): TransitLine => ({
   name: line?.name,
-  mode: line?.mode,
+  product: line?.product,
 });
 
 export const mapStopover = (stopover: StopOver): Stopover => ({

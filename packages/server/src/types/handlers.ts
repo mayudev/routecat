@@ -11,3 +11,7 @@ export interface JourneyQuery {
 export interface TripBody {
   tripId: string;
 }
+
+export interface StationParams {
+  stationId: string;
+}

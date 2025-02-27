@@ -12,10 +12,16 @@ export interface DepartureOrArrivalData {
   platform?: string;
 }
 
-export interface StopData extends DepartureOrArrivalData {
+export interface BaseStopData {
   id?: string;
   name?: string;
   location: Location;
+}
+
+export interface StopData extends DepartureOrArrivalData, BaseStopData {}
+
+export interface StationData extends BaseStopData {
+  isMeta: boolean;
 }
 
 export type Location = Array<number>;

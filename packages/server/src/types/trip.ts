@@ -5,20 +5,28 @@ interface Trip {
   line: TransitLine;
   origin: StopData;
   destination: StopData;
-  stopovers: Stopover[];
-}
-
-export interface FullTrip extends Trip {
-  polyline: Location[];
-}
-
-export interface LegTrip extends Trip {
   direction?: string;
   walking?: boolean;
   distance?: number;
 }
 
+export interface TripWithStopovers extends Trip {
+  stopovers: Stopover[];
+}
+
+export interface FullTrip extends TripWithStopovers {
+  polyline: Location[];
+}
+
+export interface AlternativeTrip extends Trip {
+  planned?: string;
+  actual?: string;
+  plannedPlatform?: string;
+  platform?: string;
+  provenance?: string;
+}
+
 export interface TransitLine {
   name?: string;
-  mode?: string;
+  product?: string;
 }
