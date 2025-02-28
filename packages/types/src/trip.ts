@@ -1,4 +1,4 @@
-import { DepartureOrArrivalData, Location, StopData, Stopover } from './stop';
+import { Location, StopData, Stopover } from './stop';
 
 export interface Trip {
   id: string;

@@ -1,10 +1,5 @@
 import { Alternative, Journey, Leg, TripWithRealtimeData } from 'hafas-client';
-import {
-  AlternativeTrip,
-  FullTrip,
-  Trip,
-  TripWithStopovers,
-} from '../../types/trip';
+import { AlternativeTrip, FullTrip, Trip, TripWithStopovers } from 'types';
 import { mapDestination, mapLine, mapOrigin, mapStopover } from './helpers';
 
 export const mapJourneys = (journeys: readonly Journey[]) =>

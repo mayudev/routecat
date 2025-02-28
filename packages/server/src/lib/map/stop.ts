@@ -1,5 +1,5 @@
 import { Station, Stop } from 'hafas-client';
-import { StationData } from '../../types/stop';
+import { StationData } from 'types';
 
 export const mapStation = (station: Stop | Station): StationData => ({
   id: station.id,

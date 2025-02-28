@@ -1,11 +1,10 @@
-import { Trip as HafasTrip, Line, Stop, StopOver } from 'hafas-client';
+import { Line, Stop, StopOver } from 'hafas-client';
 import {
   TypeWithArrivalData,
   TypeWithDepartureData,
   TypeWithTripData,
 } from '../../types/hafas/stop';
-import { DepartureOrArrivalData, StopData, Stopover } from '../../types/stop';
-import { TransitLine } from '../../types/trip';
+import { DepartureOrArrivalData, StopData, Stopover, TransitLine } from 'types';
 
 export const mapOrigin = (trip: TypeWithTripData): StopData | undefined =>
   trip.origin && {

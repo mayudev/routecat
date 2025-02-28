@@ -1,15 +1,15 @@
-export interface Stopover {
-  id?: string;
-  name?: string;
-  departure: DepartureOrArrivalData;
-  arrival: DepartureOrArrivalData;
-}
-
 export interface DepartureOrArrivalData {
   planned?: string;
   actual?: string;
   plannedPlatform?: string;
   platform?: string;
+}
+
+export interface Stopover {
+  id?: string;
+  name?: string;
+  departure: DepartureOrArrivalData;
+  arrival: DepartureOrArrivalData;
 }
 
 export interface BaseStopData {
