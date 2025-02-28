@@ -5,7 +5,8 @@ export interface StopQuery {
 export interface JourneyQuery {
   origin: string;
   dest: string;
-  date?: string;
+  departure?: string;
+  arrival?: string;
 }
 
 export interface TripBody {
@@ -14,4 +15,8 @@ export interface TripBody {
 
 export interface StationParams {
   stationId: string;
+}
+
+export interface StationQuery {
+  when?: string;
 }

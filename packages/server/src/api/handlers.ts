@@ -1,14 +1,16 @@
 import { RequestHandler } from 'express';
+import { Station } from 'hafas-client';
 import client from '../lib/hafas';
+import { mapStation } from '../lib/map/stop';
+import { mapAlternative, mapJourneys, mapTrip } from '../lib/map/trip';
 import {
   JourneyQuery,
   StationParams,
+  StationQuery,
   StopQuery,
   TripBody,
 } from '../types/handlers';
-import { Leg, Station, Stop } from 'hafas-client';
-import { mapAlternative, mapJourneys, mapTrip } from '../lib/map/trip';
-import { mapStation } from '../lib/map/stop';
+import { parseStationWhen } from '../lib/date';
 
 export const stopHandler: RequestHandler<{}, {}, {}, StopQuery> = async (
   req,
@@ -44,15 +46,22 @@ export const journeyHandler: RequestHandler<{}, {}, {}, JourneyQuery> = async (
   }
 
   try {
+    const dateSpecifiers = req.query.departure
+      ? { departure: new Date(req.query.departure) }
+      : req.query.arrival
+      ? { arrival: new Date(req.query.arrival) }
+      : {};
+
     const results = await client.journeys(origin, destination, {
       results: 5,
-      departure: req.query.date ? new Date(req.query.date) : undefined,
       stopovers: true,
+      ...dateSpecifiers,
     });
 
     const mapped = mapJourneys(results.journeys ?? []);
     res.send(mapped);
   } catch (e) {
+    console.error(e);
     res.sendStatus(500);
   }
   return;
@@ -79,13 +88,16 @@ export const tripHandler: RequestHandler<{}, {}, TripBody, {}> = async (
   return;
 };
 
-export const departuresHandler: RequestHandler<StationParams> = async (
-  req,
-  res
-) => {
+export const departuresHandler: RequestHandler<
+  StationParams,
+  {},
+  {},
+  StationQuery
+> = async (req, res) => {
   try {
     const trips = await client.departures(req.params.stationId, {
       results: 10,
+      ...parseStationWhen(req.query),
     });
     const mapped = trips.departures.map(departure => mapAlternative(departure));
     res.send(mapped);
@@ -94,13 +106,16 @@ export const departuresHandler: RequestHandler<StationParams> = async (
   }
 };
 
-export const arrivalsHandler: RequestHandler<StationParams> = async (
-  req,
-  res
-) => {
+export const arrivalsHandler: RequestHandler<
+  StationParams,
+  {},
+  {},
+  StationQuery
+> = async (req, res) => {
   try {
     const trips = await client.arrivals(req.params.stationId, {
       results: 10,
+      ...parseStationWhen(req.query),
     });
     const mapped = trips.arrivals.map(arrival => mapAlternative(arrival));
     res.send(mapped);
