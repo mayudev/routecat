@@ -1,10 +1,10 @@
 import { DepartureOrArrivalData, Location, StopData, Stopover } from './stop';
 
-interface Trip {
+export interface Trip {
   id: string;
   line: TransitLine;
-  origin: StopData;
-  destination: StopData;
+  origin?: StopData;
+  destination?: StopData;
   direction?: string;
   walking?: boolean;
   distance?: number;

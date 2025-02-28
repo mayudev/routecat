@@ -7,7 +7,7 @@ import {
   TripBody,
 } from '../types/handlers';
 import { Leg, Station, Stop } from 'hafas-client';
-import { mapAlternative, mapJourneys, mapLeg, mapTrip } from '../lib/map/trip';
+import { mapAlternative, mapJourneys, mapTrip } from '../lib/map/trip';
 import { mapStation } from '../lib/map/stop';
 
 export const stopHandler: RequestHandler<{}, {}, {}, StopQuery> = async (
@@ -85,7 +85,7 @@ export const departuresHandler: RequestHandler<StationParams> = async (
 ) => {
   try {
     const trips = await client.departures(req.params.stationId, {
-      duration: 30,
+      results: 10,
     });
     const mapped = trips.departures.map(departure => mapAlternative(departure));
     res.send(mapped);
@@ -100,7 +100,7 @@ export const arrivalsHandler: RequestHandler<StationParams> = async (
 ) => {
   try {
     const trips = await client.arrivals(req.params.stationId, {
-      duration: 30,
+      results: 10,
     });
     const mapped = trips.arrivals.map(arrival => mapAlternative(arrival));
     res.send(mapped);
