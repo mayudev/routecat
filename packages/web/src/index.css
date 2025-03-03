@@ -8,8 +8,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  background: white;
+  color: #181818;
+
   --colors-active-foreground: #a200ff;
   --colors-active-background: #f3dfff;
+
+  --colors-border: #a9a9a9;
+  --colors-border-active: #a587b5;
 }
 
 body {

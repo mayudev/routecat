@@ -1,0 +1,29 @@
+.inputContainer {
+  border: 1px solid var(--colors-border);
+  padding: 12px;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inputContainer:focus-within {
+  border: 1px solid var(--colors-border-active);
+}
+
+.input {
+  font: inherit;
+
+  width: 100%;
+
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+
+  color: inherit;
+}
+
+.label {
+  font-weight: 300;
+}

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 import { Map } from '../components/Map';
 import styles from './Root.module.css';
-import { Header } from '../components/Header';
+import { Header } from '../components/organisms/Header';
 
 export const Root = () => {
   return (
