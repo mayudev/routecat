@@ -1,4 +1,4 @@
-import '@fontsource-variable/outfit';
+import '@fontsource-variable/cabin';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';

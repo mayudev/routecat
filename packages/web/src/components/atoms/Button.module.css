@@ -1,0 +1,51 @@
+.button {
+  outline: none;
+  border: none;
+  font: inherit;
+
+  color: inherit;
+
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.filled {
+  background: var(--colors-active-foreground);
+  color: white;
+}
+
+.filled:hover {
+  background: var(--colors-active-foreground-focus);
+}
+
+.tonal {
+  background: var(--colors-active-background);
+  color: var(--colors-active-foreground);
+}
+
+.tonal:hover {
+  background: var(--colors-active-background-focus);
+}
+
+.outlined {
+  border: 1px solid var(--colors-active-foreground);
+  background: inherit;
+  color: var(--colors-active-foreground);
+}

@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Outfit Variable', monospace;
+  font-family: 'Cabin Variable', monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,8 +11,13 @@
   background: white;
   color: #181818;
 
-  --colors-active-foreground: #a200ff;
+  --color-text-highlight: #673582;
+
+  --colors-active-foreground: #7f13be;
+  --colors-active-foreground-focus: #641293;
+
   --colors-active-background: #f3dfff;
+  --colors-active-background-focus: #e5d1f0;
 
   --colors-border: #a9a9a9;
   --colors-border-active: #a587b5;

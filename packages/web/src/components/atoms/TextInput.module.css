@@ -5,11 +5,13 @@
 
   display: flex;
   align-items: center;
-  gap: 8px;
+  transition: 200ms;
 }
 
 .inputContainer:focus-within {
   border: 1px solid var(--colors-border-active);
+  align-items: start;
+  flex-direction: column;
 }
 
 .input {
@@ -22,8 +24,17 @@
   box-sizing: border-box;
 
   color: inherit;
+  background: inherit;
+
+  padding: 0;
 }
 
 .label {
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.inputContainer:focus-within .label {
+  color: var(--colors-active-foreground);
 }

@@ -43,9 +43,12 @@ importers:
 
   packages/web:
     dependencies:
-      '@fontsource-variable/outfit':
-        specifier: ^5.2.0
-        version: 5.2.0
+      '@fontsource-variable/cabin':
+        specifier: ^5.2.5
+        version: 5.2.5
+      '@tanstack/react-query':
+        specifier: ^5.67.1
+        version: 5.67.1(react@19.0.0)
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -89,6 +92,9 @@ importers:
       globals:
         specifier: ^15.15.0
         version: 15.15.0
+      types:
+        specifier: workspace:../types
+        version: link:../types
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -590,8 +596,8 @@ packages:
       levn: 0.4.1
     dev: true
 
-  /@fontsource-variable/outfit@5.2.0:
-    resolution: {integrity: sha512-4QakLiAkXrNsGfbOH4MPrWQ8tS0eW5uJUhu2LlW++iUNBzsz52E69DvUiWJcGCcQ7WHAJexXnobzAjPWppur9g==}
+  /@fontsource-variable/cabin@5.2.5:
+    resolution: {integrity: sha512-1d9ftrxQ2bAONqPnnLH8OgpYioVqxudusav90HxRpHKezmYo/fR9xZJ8r498lXipu86QBKmFxtb728G5XD1E0A==}
     dev: false
 
   /@humanfs/core@0.19.1:
@@ -831,6 +837,19 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tanstack/query-core@5.67.1:
+    resolution: {integrity: sha512-AkFmuukVejyqVIjEQoFhLb3q+xHl7JG8G9cANWTMe3s8iKzD9j1VBSYXgCjy6vm6xM8cUCR9zP2yqWxY9pTWOA==}
+    dev: false
+
+  /@tanstack/react-query@5.67.1(react@19.0.0):
+    resolution: {integrity: sha512-fH5u4JLwB6A+wLFdi8wWBWAYoJV5deYif2OveJ26ktAWjU499uvVFS1wPWnyEyq5LvZX1MZInvv9QRaIZANRaQ==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      '@tanstack/query-core': 5.67.1
+      react: 19.0.0
+    dev: false
 
   /@tsconfig/node10@1.0.11:
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}

@@ -6,15 +6,17 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  flex-grow: 1;
 
-  padding: 8px 16px;
+  padding: 8px;
   border-radius: 500px;
+
+  font-weight: 500;
 }
 
 .activeLink {
   background: var(--colors-active-background);
   color: var(--colors-active-foreground);
-  font-weight: 500;
 }
 
 .link:match {

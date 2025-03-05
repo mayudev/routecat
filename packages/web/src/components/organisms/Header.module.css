@@ -7,12 +7,5 @@
 
 .navbar {
   display: flex;
-  gap: 12px;
-}
-
-.header {
-  margin: 12px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  margin: 16px;
 }
