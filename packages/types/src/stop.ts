@@ -22,6 +22,7 @@ export interface StopData extends DepartureOrArrivalData, BaseStopData {}
 
 export interface StationData extends BaseStopData {
   isMeta: boolean;
+  type: string;
 }
 
 export type Location = Array<number>;

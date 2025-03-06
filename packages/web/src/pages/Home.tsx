@@ -7,10 +7,8 @@ export const Home = () => {
   return (
     <div className={styles.layout}>
       <div className={styles.headline}>Plan your trip</div>
-      <div>
-        <StationInput label="From" />
-      </div>
-      <StationInput label="To" />
+      <StationInput onSelect={() => {}} label="From" />
+      <StationInput onSelect={() => {}} label="To" />
       <div className={styles.buttons}>
         <Button icon={PiGear} />
         <Button variant="filled" fullWidth icon={PiMagnifyingGlass}>

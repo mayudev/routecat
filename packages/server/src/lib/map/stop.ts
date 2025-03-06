@@ -6,4 +6,5 @@ export const mapStation = (station: Stop | Station): StationData => ({
   name: station.name,
   location: [station.location?.latitude ?? 0, station.location?.longitude ?? 0],
   isMeta: station.isMeta ?? false,
+  type: station.type,
 });

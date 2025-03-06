@@ -11,16 +11,16 @@
   background: white;
   color: #181818;
 
-  --color-text-highlight: #673582;
+  --color-text-highlight: #624b5c;
 
-  --colors-active-foreground: #7f13be;
-  --colors-active-foreground-focus: #641293;
+  --colors-active-foreground: #a67c9a;
+  --colors-active-foreground-focus: #835175;
 
-  --colors-active-background: #f3dfff;
-  --colors-active-background-focus: #e5d1f0;
+  --colors-active-background: #faf7f9;
+  --colors-active-background-focus: #e8dde4;
 
-  --colors-border: #a9a9a9;
-  --colors-border-active: #a587b5;
+  --colors-border: #faf7f9;
+  --colors-border-active: #d6a7c6;
 }
 
 body {
