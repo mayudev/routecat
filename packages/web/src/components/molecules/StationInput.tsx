@@ -4,10 +4,12 @@ import styles from './StationInput.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { stopsQueryFn } from '../../services/stops';
 import { StationSuggestion } from '../atoms/StationSuggestion';
+import { Spinner } from '../atoms/Spinner';
+import { StationData } from 'types';
 
 type Props = {
   label: string;
-  onSelect: (stationId: string) => void;
+  onSelect: (station: StationData) => void;
 };
 
 export const StationInput = ({ label, onSelect }: Props) => {
@@ -17,7 +19,7 @@ export const StationInput = ({ label, onSelect }: Props) => {
 
   const timer = useRef(0);
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['stationInput', debouncedValue],
     queryFn: stopsQueryFn({
       search: debouncedValue,
@@ -34,7 +36,7 @@ export const StationInput = ({ label, onSelect }: Props) => {
 
     timer.current = setTimeout(() => {
       setDebouncedValue(newValue);
-    }, 1000);
+    }, 500);
   };
 
   const select = (index: number) => {
@@ -44,7 +46,7 @@ export const StationInput = ({ label, onSelect }: Props) => {
     setActiveStationIndex(-1);
     setDebouncedValue('');
     setValue(value.name!);
-    onSelect(value.id!);
+    onSelect(value);
   };
 
   const onBlur = (e: FocusEvent<HTMLDivElement>) => {
@@ -92,6 +94,7 @@ export const StationInput = ({ label, onSelect }: Props) => {
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        end={isLoading && <Spinner size={24} borderSize={2} />}
       />
       <div className={styles.dropdown}>
         {data?.map((station, i) => (

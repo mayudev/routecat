@@ -1,17 +1,27 @@
-.inputContainer {
+.container {
+  display: flex;
+  justify-content: space-between;
+
   border: 1px solid var(--colors-border);
   padding: 12px;
   border-radius: 4px;
 
-  display: flex;
-  align-items: center;
-  transition: 200ms;
-
   background: var(--colors-active-background);
 }
 
-.inputContainer:focus-within {
+.inputContainer {
+  flex-grow: 1;
+
+  display: flex;
+  align-items: center;
+  transition: 200ms;
+}
+
+.container:focus-within {
   border: 1px solid var(--colors-border-active);
+}
+
+.container:focus-within .inputContainer {
   align-items: start;
   flex-direction: column;
 }
@@ -37,6 +47,6 @@
   margin-right: 4px;
 }
 
-.inputContainer:focus-within .label {
+.container:focus-within .label {
   color: var(--colors-active-foreground);
 }

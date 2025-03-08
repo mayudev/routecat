@@ -18,7 +18,12 @@
   transition: 0.2s ease;
 }
 
-.button:active {
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.button:enabled:active {
   transform: scale(0.9);
 }
 
