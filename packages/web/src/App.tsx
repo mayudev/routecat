@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router';
 import { Root } from './pages/Root';
 import { Home } from './pages/Home';
 import { MarkerContext } from './context/MarkerContext';
+import { Journey } from './pages/Journey';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Routes>
         <Route element={<Root />}>
           <Route path="/" element={<Home />}>
-            <Route path="/journey" element={<div>aaa</div>} />
+            <Route path="/journey" element={<Journey />} />
           </Route>
         </Route>
       </Routes>

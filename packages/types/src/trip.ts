@@ -1,5 +1,9 @@
 import { Location, StopData, Stopover } from './stop';
 
+export interface Journey {
+  legs: TripWithStopovers[];
+}
+
 export interface Trip {
   id: string;
   line: TransitLine;

@@ -1,0 +1,25 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.headline {
+  font-size: 22px;
+  color: var(--color-text-highlight);
+  margin-bottom: 8px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.datePicker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+  align-items: start;
+  gap: 8px;
+}

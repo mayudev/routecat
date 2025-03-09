@@ -12,6 +12,7 @@
   "dependencies": {
     "@fontsource-variable/cabin": "^5.2.5",
     "@tanstack/react-query": "^5.67.1",
+    "dayjs": "^1.11.13",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

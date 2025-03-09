@@ -6,6 +6,7 @@
 
 .controls {
   min-width: 400px;
+  height: 100%;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
   z-index: 3;
 }
