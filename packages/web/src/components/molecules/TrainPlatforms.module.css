@@ -1,0 +1,9 @@
+.platforms {
+  display: flex;
+  gap: 8px;
+}
+
+.changed {
+  text-decoration: line-through;
+  color: var(--color-text-error);
+}

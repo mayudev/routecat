@@ -1,0 +1,13 @@
+.legs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leg {
+  border-radius: 4px;
+  text-align: center;
+  padding: 4px;
+
+  flex-grow: 1;
+}

@@ -32,5 +32,18 @@ export interface AlternativeTrip extends Trip {
 
 export interface TransitLine {
   name?: string;
-  product?: string;
+  product?: Product;
 }
+
+export type Product =
+  | 'nationalExpress'
+  | 'national'
+  | 'interregional'
+  | 'regional'
+  | 'suburban'
+  | 'bus'
+  | 'ferry'
+  | 'subway'
+  | 'tram'
+  | 'onCall'
+  | undefined;

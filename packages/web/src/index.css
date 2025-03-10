@@ -12,11 +12,16 @@
   color: #181818;
 
   --color-text-highlight: #624b5c;
+  --color-text-error: #be6e6e;
+  --color-text-success: #659c6c;
+  --color-text-fast: #884343;
+  --color-text-info: #455197;
 
   --colors-active-foreground: #a67c9a;
   --colors-active-foreground-focus: #835175;
 
   --colors-active-background: #faf7f9;
+  --colors-active-background-emphasis: #eee7ec;
   --colors-active-background-focus: #e8dde4;
 
   --colors-border: #faf7f9;
@@ -25,4 +30,29 @@
 
 body {
   margin: 0;
+}
+
+.legProduct {
+  background: var(--color-text-highlight);
+  color: white;
+}
+
+.legProduct-nationalExpress {
+  background: var(--color-text-fast);
+  color: white;
+}
+
+.legProduct-bus {
+  background: var(--color-text-info);
+  color: white;
+}
+
+.legProduct-tram,
+.legProduct-subway {
+  background: var(--color-text-error);
+  color: white;
+}
+.legProduct-suburban {
+  background: var(--color-text-success);
+  color: white;
 }

@@ -1,0 +1,11 @@
+.planned {
+  font-weight: 500;
+}
+
+.delayed {
+  color: var(--color-text-error);
+}
+
+.ontime {
+  color: var(--color-text-success);
+}

@@ -53,7 +53,7 @@ export const journeyHandler: RequestHandler<{}, {}, {}, JourneyQuery> = async (
       : {};
 
     const results = await client.journeys(origin, destination, {
-      results: 5,
+      results: 15,
       stopovers: true,
       ...dateSpecifiers,
     });

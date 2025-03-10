@@ -4,7 +4,13 @@ import {
   TypeWithDepartureData,
   TypeWithTripData,
 } from '../../types/hafas/stop';
-import { DepartureOrArrivalData, StopData, Stopover, TransitLine } from 'types';
+import {
+  DepartureOrArrivalData,
+  Product,
+  StopData,
+  Stopover,
+  TransitLine,
+} from 'types';
 
 export const mapOrigin = (trip: TypeWithTripData): StopData | undefined =>
   trip.origin && {
@@ -48,7 +54,7 @@ export const mapDeparture = (
 
 export const mapLine = (line?: Line): TransitLine => ({
   name: line?.name,
-  product: line?.product,
+  product: line?.product as Product | undefined,
 });
 
 export const mapStopover = (stopover: StopOver): Stopover => ({
