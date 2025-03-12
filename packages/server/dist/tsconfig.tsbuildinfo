@@ -1,1 +1,0 @@
-{"root":["../src/index.ts","../src/api/api.ts","../src/api/handlers.ts","../src/lib/date.ts","../src/lib/hafas.ts","../src/lib/map/helpers.ts","../src/lib/map/stop.ts","../src/lib/map/trip.ts","../src/types/handlers.ts","../src/types/hafas/stop.ts"],"version":"5.8.2"}
