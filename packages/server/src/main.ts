@@ -9,3 +9,5 @@ app.use('/api', api);
 const port = process.env.APP_PORT || 8080;
 app.listen(port);
 console.log(`Running on port ${port}`);
+
+export default app;
