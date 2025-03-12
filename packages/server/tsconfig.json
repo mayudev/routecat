@@ -4,8 +4,8 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "target": "es2020",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "commonjs",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

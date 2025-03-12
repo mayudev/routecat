@@ -2,12 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.ts",
-  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
+  "main": "main.ts",
   "scripts": {
     "build": "tsc --build",
     "start": "node ./dist/main.js",
-    "dev": "nodemon ./src/api/main.ts",
+    "dev": "nodemon ./src/main.ts",
     "format": "prettier --write ."
   },
   "keywords": [],
@@ -25,8 +24,5 @@
     "@types/hafas-client": "^6.3.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2"
-  },
-  "imports": {
-    "types": "../types"
   }
 }

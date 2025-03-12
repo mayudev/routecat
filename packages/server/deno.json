@@ -1,7 +1,0 @@
-{
-  "imports": {
-    "express": "npm:express",
-    "hafas-client": "npm:hafas-client",
-    "types": "../types/src/index.ts"
-  }
-}
