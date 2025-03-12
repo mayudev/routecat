@@ -13,8 +13,8 @@ export interface Stopover {
 }
 
 export interface BaseStopData {
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
   location: Location;
 }
 

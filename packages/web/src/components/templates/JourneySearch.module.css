@@ -24,3 +24,12 @@
   align-items: start;
   gap: 8px;
 }
+
+.suggestions {
+  gap: 12px;
+}
+
+.suggestions button {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}

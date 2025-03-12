@@ -8,6 +8,8 @@ import { StationInput } from '../molecules/StationInput';
 import { TextInput } from '../atoms/TextInput';
 import { Button } from '../atoms/Button';
 import { JourneyParams } from '../../services/journey';
+import { Suggestion, suggestions } from '../lib/suggestions';
+import { TripSuggestion } from '../molecules/TripSuggestion';
 
 type Props = {
   compact?: boolean;
@@ -21,11 +23,21 @@ export const JourneySearch = ({ compact }: Props) => {
   const { setOriginMarker, setDestinationMarker } = useMarkerContext();
   const navigate = useNavigate();
 
+  const [originSuggestion, setOriginSuggestion] = useState('');
+  const [destinationSuggestion, setDestinationSuggestion] = useState('');
+
   const [date, setDate] = useState(currentDay);
   const [time, setTime] = useState(currentTime);
 
   const [originId, setOriginId] = useState<string>('');
   const [destinationId, setDestinationId] = useState<string>('');
+
+  const selectSuggestion = (suggestion: Suggestion) => {
+    setOriginId(suggestion.origin.stationId);
+    setDestinationId(suggestion.destination.stationId);
+    setOriginSuggestion(suggestion.origin.stationName);
+    setDestinationSuggestion(suggestion.destination.stationName);
+  };
 
   const onSelectOrigin = (station: StationData) => {
     setOriginId(station.id!);
@@ -51,13 +63,20 @@ export const JourneySearch = ({ compact }: Props) => {
   return (
     <div className={styles.layout}>
       {!compact && <div className={styles.headline}>Plan your trip</div>}
-      <StationInput onSelect={onSelectOrigin} label="From" />
-      <StationInput onSelect={onSelectDestination} label="To" />
+      <StationInput
+        onSelect={onSelectOrigin}
+        suggestedValue={originSuggestion}
+        label="From"
+      />
+      <StationInput
+        onSelect={onSelectDestination}
+        suggestedValue={destinationSuggestion}
+        label="To"
+      />
       <div className={styles.datePicker}>
         <TextInput label="Day" value={date} onChange={setDate} type="date" />
         <TextInput label="Time" value={time} onChange={setTime} type="time" />
       </div>
-
       <div className={styles.buttons}>
         {/* <Button icon={PiGear} /> */}
         <Button
@@ -70,6 +89,17 @@ export const JourneySearch = ({ compact }: Props) => {
           Search
         </Button>
       </div>
+      {!compact && (
+        <div className={styles.suggestions}>
+          <div className={styles.headline}>Not sure where to go?</div>
+          {suggestions.map(suggestion => (
+            <TripSuggestion
+              suggestion={suggestion}
+              onClick={() => selectSuggestion(suggestion)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

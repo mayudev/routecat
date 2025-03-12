@@ -1,4 +1,4 @@
-import { FocusEvent, KeyboardEvent, useRef, useState } from 'react';
+import { FocusEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { TextInput } from '../atoms/TextInput';
 import styles from './StationInput.module.css';
 import { useQuery } from '@tanstack/react-query';
@@ -9,13 +9,22 @@ import { StationData } from 'types';
 
 type Props = {
   label: string;
+  suggestedValue?: string;
   onSelect: (station: StationData) => void;
 };
 
-export const StationInput = ({ label, onSelect }: Props) => {
-  const [value, setValue] = useState('');
+export const StationInput = ({
+  label,
+  suggestedValue = '',
+  onSelect,
+}: Props) => {
+  const [value, setValue] = useState(suggestedValue);
   const [debouncedValue, setDebouncedValue] = useState('');
   const [activeStationIndex, setActiveStationIndex] = useState(-1);
+
+  useEffect(() => {
+    setValue(suggestedValue);
+  }, [suggestedValue]);
 
   const timer = useRef(0);
 

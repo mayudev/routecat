@@ -22,7 +22,10 @@ export const Journey = () => {
   return (
     <div className={styles.journeys}>
       {isLoading ? (
-        <Spinner />
+        <div className={styles.spinner}>
+          <Spinner />
+          Looking for the best routes for you
+        </div>
       ) : (
         <div>
           {data?.map(journey => (

@@ -17,13 +17,15 @@ export const TrainTimeset = ({ stop }: Props) => {
   return (
     <div className={styles.timeset}>
       <div className={styles.planned}>{planned.format(hhmm)}</div>
-      <div
-        className={`${styles.actual} ${
-          delayMinutes > 5 ? styles.delayed : styles.ontime
-        }`}
-      >
-        {actual.format(hhmm)}
-      </div>
+      {stop?.actual && (
+        <div
+          className={`${styles.actual} ${
+            delayMinutes > 5 ? styles.delayed : styles.ontime
+          }`}
+        >
+          {actual.format(hhmm)}
+        </div>
+      )}
     </div>
   );
 };

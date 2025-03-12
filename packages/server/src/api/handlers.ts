@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import { Station } from 'hafas-client';
 import client from '../lib/hafas';
-import { mapStation } from '../lib/map/stop';
+import { filterStation, mapStation } from '../lib/map/stop';
 import { mapAlternative, mapJourneys, mapTrip } from '../lib/map/trip';
 import {
   JourneyQuery,
@@ -24,8 +24,12 @@ export const stopHandler: RequestHandler<{}, {}, {}, StopQuery> = async (
   }
 
   try {
-    const result = await client.locations(searchQuery, { results: 5 });
-    const mapped = result.map(station => mapStation(station as Station));
+    const result = await client.locations(searchQuery, {
+      results: 5,
+    });
+    const mapped = result
+      .filter(filterStation)
+      .map(station => mapStation(station as Station));
     res.send(mapped);
   } catch (e) {
     res.sendStatus(500);
