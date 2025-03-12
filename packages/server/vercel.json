@@ -3,5 +3,6 @@
     "api/**/*.[jt]s": {
       "runtime": "vercel-deno@3.1.0"
     }
-  }
+  },
+  "outputDirectory": "api"
 }
