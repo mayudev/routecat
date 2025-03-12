@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "pnpm build",
   "outputDirectory": "dist",
   "builds": [
     {
@@ -7,5 +8,10 @@
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/main.js" }]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/main.js"
+    }
+  ]
 }
