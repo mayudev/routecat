@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const handlers_1 = require("./handlers");
+const api = (0, express_1.Router)();
+api.get('/stops', handlers_1.stopHandler);
+api.get('/journey', handlers_1.journeyHandler);
+api.post('/trip', handlers_1.tripHandler);
+api.get('/arrivals/:stationId', handlers_1.arrivalsHandler);
+api.get('/departures/:stationId', handlers_1.departuresHandler);
+exports.default = api;
