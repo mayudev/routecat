@@ -1,5 +1,5 @@
 {
   "version": 2,
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "main.js" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
