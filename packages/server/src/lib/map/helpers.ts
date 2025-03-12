@@ -14,8 +14,8 @@ import {
 
 export const mapOrigin = (trip: TypeWithTripData): StopData | undefined =>
   trip.origin && {
-    id: trip.origin?.id,
-    name: trip.origin?.name,
+    id: trip.origin?.id ?? '',
+    name: trip.origin?.name ?? '',
     location: [
       (trip.origin as Stop)?.location?.latitude ?? 0,
       (trip.origin as Stop)?.location?.longitude ?? 0,
@@ -25,8 +25,8 @@ export const mapOrigin = (trip: TypeWithTripData): StopData | undefined =>
 
 export const mapDestination = (trip: TypeWithTripData): StopData | undefined =>
   trip.destination && {
-    id: trip.destination?.id,
-    name: trip.destination?.name,
+    id: trip.destination?.id ?? '',
+    name: trip.destination?.name ?? '',
     location: [
       (trip.destination as Stop)?.location?.latitude ?? 0,
       (trip.destination as Stop)?.location?.longitude ?? 0,
