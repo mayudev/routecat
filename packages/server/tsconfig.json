@@ -4,9 +4,8 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "target": "es2022",
-    "module": "es2022",
-    "moduleResolution": "node10",
+    "target": "es2020",
+    "module": "CommonJS",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
