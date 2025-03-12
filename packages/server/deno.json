@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "express": "npm:express",
+    "hafas-client": "npm:hafas-client"
+  }
+}
