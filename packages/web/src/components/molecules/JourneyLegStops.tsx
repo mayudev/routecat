@@ -4,6 +4,7 @@ import styles from './JourneyLegStops.module.css';
 type Props = {
   leg: TripWithStopovers;
 };
-export const JourneyLegStops = ({ leg }: Props) => {
-  return <div className={styles.stopovers}>{leg.stopovers.length}</div>;
+// eslint-disable-next-line no-empty-pattern
+export const JourneyLegStops = ({}: Props) => {
+  return <div className={styles.stopovers}></div>;
 };

@@ -4,3 +4,9 @@
   height: 100vh;
   z-index: 1;
 }
+
+@media screen and (max-width: 800px) {
+  .map {
+    display: none;
+  }
+}

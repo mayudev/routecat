@@ -1,4 +1,4 @@
-import { PiGear, PiMagnifyingGlass } from 'react-icons/pi';
+import { PiMagnifyingGlass } from 'react-icons/pi';
 import styles from './JourneySearch.module.css';
 import { useState } from 'react';
 import { StationData } from 'types';
@@ -50,7 +50,7 @@ export const JourneySearch = ({ compact }: Props) => {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.headline}>Plan your trip</div>
+      {!compact && <div className={styles.headline}>Plan your trip</div>}
       <StationInput onSelect={onSelectOrigin} label="From" />
       <StationInput onSelect={onSelectDestination} label="To" />
       <div className={styles.datePicker}>
@@ -59,7 +59,7 @@ export const JourneySearch = ({ compact }: Props) => {
       </div>
 
       <div className={styles.buttons}>
-        <Button icon={PiGear} />
+        {/* <Button icon={PiGear} /> */}
         <Button
           disabled={!originId || !destinationId}
           variant="filled"

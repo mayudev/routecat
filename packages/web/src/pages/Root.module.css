@@ -5,10 +5,17 @@
 }
 
 .controls {
+  background: white;
   min-width: 600px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
   z-index: 3;
 
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .controls {
+    min-width: 100%;
+  }
 }

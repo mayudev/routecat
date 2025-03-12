@@ -1,4 +1,4 @@
-import { PiHouseSimple, PiTrain } from 'react-icons/pi';
+import { PiTrain } from 'react-icons/pi';
 import { NavLink } from '../atoms/NavLink';
 import styles from './Header.module.css';
 
@@ -8,9 +8,6 @@ export const Header = () => {
       <nav className={styles.navbar}>
         <NavLink icon={PiTrain} to="/">
           Journey
-        </NavLink>
-        <NavLink icon={PiHouseSimple} to="/station">
-          Stations
         </NavLink>
       </nav>
     </header>
