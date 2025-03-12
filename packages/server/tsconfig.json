@@ -4,8 +4,9 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node10",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

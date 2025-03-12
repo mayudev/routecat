@@ -1,26 +1,20 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.arrivalsHandler = exports.departuresHandler = exports.tripHandler = exports.journeyHandler = exports.stopHandler = void 0;
-const hafas_1 = __importDefault(require("../lib/hafas"));
-const stop_1 = require("../lib/map/stop");
-const trip_1 = require("../lib/map/trip");
-const date_1 = require("../lib/date");
-const stopHandler = async (req, res) => {
+import client from '../lib/hafas';
+import { filterStation, mapStation } from '../lib/map/stop';
+import { mapAlternative, mapJourneys, mapTrip } from '../lib/map/trip';
+import { parseStationWhen } from '../lib/date';
+export const stopHandler = async (req, res) => {
     const searchQuery = req.query.search;
     if (!searchQuery) {
         res.status(400).send();
         return;
     }
     try {
-        const result = await hafas_1.default.locations(searchQuery, {
+        const result = await client.locations(searchQuery, {
             results: 5,
         });
         const mapped = result
-            .filter(stop_1.filterStation)
-            .map(station => (0, stop_1.mapStation)(station));
+            .filter(filterStation)
+            .map(station => mapStation(station));
         res.send(mapped);
     }
     catch (e) {
@@ -28,8 +22,7 @@ const stopHandler = async (req, res) => {
     }
     return;
 };
-exports.stopHandler = stopHandler;
-const journeyHandler = async (req, res) => {
+export const journeyHandler = async (req, res) => {
     const origin = req.query.origin;
     const destination = req.query.dest;
     if (!origin || !destination) {
@@ -42,12 +35,12 @@ const journeyHandler = async (req, res) => {
             : req.query.arrival
                 ? { arrival: new Date(req.query.arrival) }
                 : {};
-        const results = await hafas_1.default.journeys(origin, destination, {
+        const results = await client.journeys(origin, destination, {
             results: 15,
             stopovers: true,
             ...dateSpecifiers,
         });
-        const mapped = (0, trip_1.mapJourneys)(results.journeys ?? []);
+        const mapped = mapJourneys(results.journeys ?? []);
         res.send(mapped);
     }
     catch (e) {
@@ -56,15 +49,14 @@ const journeyHandler = async (req, res) => {
     }
     return;
 };
-exports.journeyHandler = journeyHandler;
-const tripHandler = async (req, res) => {
+export const tripHandler = async (req, res) => {
     if (!req.body.tripId) {
         res.status(400).send();
         return;
     }
     try {
-        const trip = await hafas_1.default.trip(req.body.tripId, { polyline: true });
-        const mapped = (0, trip_1.mapTrip)(trip);
+        const trip = await client.trip(req.body.tripId, { polyline: true });
+        const mapped = mapTrip(trip);
         res.send(mapped);
     }
     catch (e) {
@@ -72,32 +64,29 @@ const tripHandler = async (req, res) => {
     }
     return;
 };
-exports.tripHandler = tripHandler;
-const departuresHandler = async (req, res) => {
+export const departuresHandler = async (req, res) => {
     try {
-        const trips = await hafas_1.default.departures(req.params.stationId, {
+        const trips = await client.departures(req.params.stationId, {
             results: 10,
-            ...(0, date_1.parseStationWhen)(req.query),
+            ...parseStationWhen(req.query),
         });
-        const mapped = trips.departures.map(departure => (0, trip_1.mapAlternative)(departure));
+        const mapped = trips.departures.map(departure => mapAlternative(departure));
         res.send(mapped);
     }
     catch (e) {
         res.sendStatus(500);
     }
 };
-exports.departuresHandler = departuresHandler;
-const arrivalsHandler = async (req, res) => {
+export const arrivalsHandler = async (req, res) => {
     try {
-        const trips = await hafas_1.default.arrivals(req.params.stationId, {
+        const trips = await client.arrivals(req.params.stationId, {
             results: 10,
-            ...(0, date_1.parseStationWhen)(req.query),
+            ...parseStationWhen(req.query),
         });
-        const mapped = trips.arrivals.map(arrival => (0, trip_1.mapAlternative)(arrival));
+        const mapped = trips.arrivals.map(arrival => mapAlternative(arrival));
         res.send(mapped);
     }
     catch (e) {
         res.sendStatus(500);
     }
 };
-exports.arrivalsHandler = arrivalsHandler;

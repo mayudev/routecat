@@ -25,5 +25,8 @@
     "@types/hafas-client": "^6.3.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2"
+  },
+  "imports": {
+    "types": "../types"
   }
 }
