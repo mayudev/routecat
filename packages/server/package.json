@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc --build",
     "start": "node ./dist/main.js",
-    "dev": "nodemon ./src/main.ts",
+    "dev": "nodemon ./src/api/main.ts",
     "format": "prettier --write ."
   },
   "keywords": [],
