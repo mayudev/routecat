@@ -1,3 +1,5 @@
+#!/usr/bin/env deno run --unstable-sloppy-imports --allow-env --allow-net
+
 import express from 'express';
 import api from './api/api';
 

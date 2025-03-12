@@ -1,5 +1,5 @@
 import { createClient } from 'hafas-client';
-import { profile as oebbProfile } from 'hafas-client/p/oebb';
+import { profile as oebbProfile } from 'hafas-client/p/oebb/index.js';
 
 const userAgent = process.env.APP_HAFAS_USER_AGENT || 'bwaa';
 const client = createClient(oebbProfile, userAgent);
