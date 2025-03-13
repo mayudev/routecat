@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+permissions:
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: |
+          docker login --username "$GH_USERNAME" --password "$GH_TOKEN" ghcr.io
+          docker build . --file Dockerfile --tag "ghcr.io/$GH_USERNAME/routecat-backend:latest"
+          docker push "ghcr.io/$GH_USERNAME/routecat-backend:latest"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME: ${{ github.repository_owner }}
