@@ -1,7 +1,14 @@
 import express from 'express';
 import api from './api/api';
+import cors from 'cors';
 
 const app = express();
+
+app.use(
+  cors({
+    origin: process.env.APP_CORS_ORIGIN || 'http://localhost',
+  })
+);
 
 app.use(express.json());
 app.use('/api', api);
