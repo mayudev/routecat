@@ -23,3 +23,11 @@ The backend uses Express.
 
 - Development: `pnpm dev`
 - Build: `pnpm build`
+
+This project ships with a Dockerfile that builds the server component.
+
+#### Environment variables
+
+- `APP_PORT` - Port (default: 8080)
+- `APP_CORS_ORIGIN` - Origin for cors (URL of the frontend)
+- `APP_HAFAS_USER_AGENT` - User agent to use with hafas
