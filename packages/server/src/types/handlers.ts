@@ -7,6 +7,8 @@ export interface JourneyQuery {
   dest: string;
   departure?: string;
   arrival?: string;
+  earlierRef?: string;
+  laterRef?: string;
 }
 
 export interface TripBody {

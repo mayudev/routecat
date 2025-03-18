@@ -1,11 +1,27 @@
-import { Alternative, Journey, Leg, TripWithRealtimeData } from 'hafas-client';
-import { AlternativeTrip, FullTrip, Trip, TripWithStopovers } from 'types';
+import {
+  Alternative,
+  Journey,
+  Journeys,
+  Leg,
+  TripWithRealtimeData,
+} from 'hafas-client';
+import {
+  AlternativeTrip,
+  FullTrip,
+  MetaJourneys,
+  Trip,
+  TripWithStopovers,
+} from 'types';
 import { mapDestination, mapLine, mapOrigin, mapStopover } from './helpers';
 
-export const mapJourneys = (journeys: readonly Journey[]) =>
-  journeys.map(journey => ({
-    legs: journey.legs.map(mapTripWithStopovers),
-  }));
+export const mapJourneys = (journeys: Journeys): MetaJourneys => ({
+  journeys:
+    journeys.journeys?.map(journey => ({
+      legs: journey.legs.map(mapTripWithStopovers),
+    })) ?? [],
+  earlierRef: journeys.earlierRef,
+  laterRef: journeys.laterRef,
+});
 
 // mapTripBasic is an internal method to map basic properties of the Trip type.
 const mapTripBasic = (trip: Leg): Trip => ({
