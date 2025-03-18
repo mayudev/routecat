@@ -60,7 +60,7 @@ export const Journey = () => {
         <div>
           <div className={styles.buttonFrame}>
             <Button disabled={isFetching} onClick={loadPrevious}>
-              Earlier trips
+              {isFetching ? <Spinner size={24} /> : 'Earlier trips'}
             </Button>
           </div>
 
@@ -69,7 +69,7 @@ export const Journey = () => {
           ))}
           <div className={styles.buttonFrame}>
             <Button disabled={isFetching} onClick={loadNext}>
-              Later trips
+              {isFetching ? <Spinner size={24} /> : 'Later trips'}
             </Button>
           </div>
         </div>
