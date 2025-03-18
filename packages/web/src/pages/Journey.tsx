@@ -25,6 +25,7 @@ export const Journey = () => {
     }),
     placeholderData: keepPreviousData,
     retry: false,
+    refetchOnWindowFocus: false,
   });
 
   const loadPrevious = useCallback(() => {
