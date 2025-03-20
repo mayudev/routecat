@@ -10,6 +10,7 @@ import { Button } from '../atoms/Button';
 import { JourneyParams } from '../../services/journey';
 import { Suggestion, suggestions } from '../lib/suggestions';
 import { TripSuggestion } from '../molecules/TripSuggestion';
+import { SearchMode } from '../lib/searchMode';
 
 type Props = {
   compact?: boolean;
@@ -28,6 +29,8 @@ export const JourneySearch = ({ compact }: Props) => {
 
   const [date, setDate] = useState(currentDay);
   const [time, setTime] = useState(currentTime);
+
+  const [mode, setMode] = useState<SearchMode>('departure');
 
   const [originId, setOriginId] = useState<string>('');
   const [destinationId, setDestinationId] = useState<string>('');
@@ -55,7 +58,12 @@ export const JourneySearch = ({ compact }: Props) => {
     params.set(JourneyParams.destination, destinationId);
     const sillyISOString = date + 'T' + time;
     const journeyDate = new Date(sillyISOString).toISOString();
-    params.set(JourneyParams.journeyDate, journeyDate);
+
+    if (mode === 'departure') {
+      params.set(JourneyParams.departure, journeyDate);
+    } else {
+      params.set(JourneyParams.arrival, journeyDate);
+    }
 
     navigate('/journey?' + params.toString());
   };
@@ -73,6 +81,20 @@ export const JourneySearch = ({ compact }: Props) => {
         suggestedValue={destinationSuggestion}
         label="To"
       />
+      <div className={styles.modeButtons}>
+        <Button
+          variant={mode === 'departure' ? 'filled' : 'tonal'}
+          onClick={() => setMode('departure')}
+        >
+          Departure
+        </Button>
+        <Button
+          variant={mode === 'arrival' ? 'filled' : 'tonal'}
+          onClick={() => setMode('arrival')}
+        >
+          Arrival
+        </Button>
+      </div>
       <div className={styles.datePicker}>
         <TextInput label="Day" value={date} onChange={setDate} type="date" />
         <TextInput label="Time" value={time} onChange={setTime} type="time" />

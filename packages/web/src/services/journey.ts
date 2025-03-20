@@ -4,13 +4,15 @@ import { serverRoot } from '.';
 export const JourneyParams = {
   origin: 'origin',
   destination: 'destination',
-  journeyDate: 'journeyDate',
+  departure: 'departure',
+  arrival: 'arrival',
 };
 
 type JourneyQuery = {
   origin: string;
   dest: string;
-  departure: string;
+  departure?: string;
+  arrival?: string;
 };
 
 export const journeyQueryFn =
