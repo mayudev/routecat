@@ -76,7 +76,7 @@ export const JourneySearch = ({ compact }: Props) => {
   const undoCompact = useCallback(() => setCompactDisplay(false), []);
 
   return (
-    <div className={styles.layout} onMouseDown={undoCompact}>
+    <div className={styles.layout} onMouseUp={undoCompact}>
       {!compactDisplay && <div className={styles.headline}>Plan your trip</div>}
       <div
         className={`${
