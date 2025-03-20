@@ -15,7 +15,9 @@ export const Journey = () => {
     queryFn: journeyQueryFn({
       origin: searchParams.get(JourneyParams.origin)!,
       dest: searchParams.get(JourneyParams.destination)!,
-      departure: searchParams.get(JourneyParams.journeyDate)!,
+      ...(searchParams.has(JourneyParams.departure)
+        ? { departure: searchParams.get(JourneyParams.departure)! }
+        : { arrival: searchParams.get(JourneyParams.arrival)! }),
     }),
     retry: false,
   });
