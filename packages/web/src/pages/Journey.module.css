@@ -11,3 +11,10 @@
   gap: 8px;
   color: var(--color-text-highlight);
 }
+
+.buttonFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+}

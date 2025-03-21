@@ -42,3 +42,14 @@
   flex-grow: 1;
   width: 100%;
 }
+
+.compactInputs {
+  display: flex;
+  gap: 8px;
+}
+
+.regularInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

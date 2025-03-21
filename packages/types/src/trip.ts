@@ -1,5 +1,11 @@
 import { Location, StopData, Stopover } from './stop';
 
+export interface MetaJourneys {
+  journeys: Journey[];
+  earlierRef?: string;
+  laterRef?: string;
+}
+
 export interface Journey {
   legs: TripWithStopovers[];
 }

@@ -1,6 +1,6 @@
 import { PiMagnifyingGlass } from 'react-icons/pi';
 import styles from './JourneySearch.module.css';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StationData } from 'types';
 import { useNavigate } from 'react-router';
 import { useMarkerContext } from '../../context/marker';
@@ -35,6 +35,9 @@ export const JourneySearch = ({ compact }: Props) => {
   const [originId, setOriginId] = useState<string>('');
   const [destinationId, setDestinationId] = useState<string>('');
 
+  const [compactDisplay, setCompactDisplay] = useState(compact);
+  useEffect(() => setCompactDisplay(compact), [compact]);
+
   const selectSuggestion = (suggestion: Suggestion) => {
     setOriginId(suggestion.origin.stationId);
     setDestinationId(suggestion.destination.stationId);
@@ -52,7 +55,8 @@ export const JourneySearch = ({ compact }: Props) => {
     setDestinationMarker(station.location as [number, number]);
   };
 
-  const onSearch = () => {
+  const onSearch = useCallback(() => {
+    setCompactDisplay(true);
     const params = new URLSearchParams();
     params.set(JourneyParams.origin, originId);
     params.set(JourneyParams.destination, destinationId);
@@ -66,21 +70,30 @@ export const JourneySearch = ({ compact }: Props) => {
     }
 
     navigate('/journey?' + params.toString());
-  };
+  }, [date, destinationId, navigate, originId, time]);
+
+  // undoCompact gets triggered when a user is interested in interacting with the component. The compact mode gets turned off.
+  const undoCompact = useCallback(() => setCompactDisplay(false), []);
 
   return (
-    <div className={styles.layout}>
-      {!compact && <div className={styles.headline}>Plan your trip</div>}
-      <StationInput
-        onSelect={onSelectOrigin}
-        suggestedValue={originSuggestion}
-        label="From"
-      />
-      <StationInput
-        onSelect={onSelectDestination}
-        suggestedValue={destinationSuggestion}
-        label="To"
-      />
+    <div className={styles.layout} onMouseUp={undoCompact}>
+      {!compactDisplay && <div className={styles.headline}>Plan your trip</div>}
+      <div
+        className={`${
+          compactDisplay ? styles.compactInputs : styles.regularInputs
+        }`}
+      >
+        <StationInput
+          onSelect={onSelectOrigin}
+          suggestedValue={originSuggestion}
+          label="From"
+        />
+        <StationInput
+          onSelect={onSelectDestination}
+          suggestedValue={destinationSuggestion}
+          label="To"
+        />
+      </div>
       <div className={styles.modeButtons}>
         <Button
           variant={mode === 'departure' ? 'filled' : 'tonal'}

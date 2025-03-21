@@ -50,7 +50,11 @@ export const journeyHandler: RequestHandler<{}, {}, {}, JourneyQuery> = async (
   }
 
   try {
-    const dateSpecifiers = req.query.departure
+    const dateSpecifiers = req.query.earlierRef
+      ? { earlierThan: req.query.earlierRef }
+      : req.query.laterRef
+      ? { laterThan: req.query.laterRef }
+      : req.query.departure
       ? { departure: new Date(req.query.departure) }
       : req.query.arrival
       ? { arrival: new Date(req.query.arrival) }
@@ -62,7 +66,7 @@ export const journeyHandler: RequestHandler<{}, {}, {}, JourneyQuery> = async (
       ...dateSpecifiers,
     });
 
-    const mapped = mapJourneys(results.journeys ?? []);
+    const mapped = mapJourneys(results);
     res.send(mapped);
   } catch (e) {
     console.error(e);
